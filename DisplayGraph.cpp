@@ -5,6 +5,7 @@
 #include <utility>
 #include <set>
 #include "DisplayGraph.h"
+#include <iostream>
 
 using namespace std;
 
@@ -13,6 +14,7 @@ void displayGraph(vector<vector<float> > Graph){
 }
 
 void displayGraph(std::vector<std::vector<float> > Graph, vector<int> circuit){
+
 	set<pair<int,int> > circuitedges;
 	for (int i=1;i<circuit.size();i++)
 		circuitedges.insert(pair<int,int>(circuit[i-1],circuit[i]));
@@ -34,7 +36,7 @@ void displayGraph(std::vector<std::vector<float> > Graph, vector<int> circuit){
 	string makeimage = string("echo ") + "\"" + dot_cmd + "\""
 				+ "| dot -Tpng > graph.png";
 	
-	system(makeimage.c_str());
+	if(system(makeimage.c_str())!=0)cerr<<"cannot make image: maybe graphviz is not installed."<<endl;
 
-	system("gnome-open graph.png");
+	if(system("gnome-open graph.png")!=0)cerr<<"cannot open image: maybe gnome-open is not installed."<<endl;
 }
