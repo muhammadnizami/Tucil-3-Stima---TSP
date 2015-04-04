@@ -2,13 +2,17 @@
 #include <cmath>
 #include <limits>
 #include <string>
+#include <algorithm>
+#include <iostream>
 
 namespace TSP_BnB{
 	Simpul::Simpul():Parent(this){
+		root=true;
 		i=0;
 		//sisanya default
 	}
 	Simpul::Simpul(FILE * f):Parent(this){
+		root=true;
 		int count = 0;
 		i=0;
 		path.push_back(i);
@@ -33,6 +37,7 @@ namespace TSP_BnB{
 
 	//membuat simpul anak
 	Simpul::Simpul(const Simpul& R, int j):Parent(&R) {
+		root=false;
 		this->R=Parent->getA();
 		n=Parent->getn();
 		i = j;
@@ -107,9 +112,11 @@ namespace TSP_BnB{
 
 	//predikat
 	bool Simpul::isRoot() const{
-		return *Parent==*this;
+		return root;
 	}
 	bool Simpul::isSolusi() const{
+		for (int i=0;i<n;i++)
+			if (std::find(path.begin(),path.end(),i)==path.end()) return false;
 		for (int i=0;i<A.size();i++)
 		for (int j=0;j<A[i].size();j++)
 			if (A[i][j]<std::numeric_limits<float>::infinity()) return false;

@@ -6,6 +6,7 @@
 #include <limits>
 #include <unistd.h>
 #include <ctime>
+#include "DisplayGraph.h"
 using namespace TSP_BnB;
 using std::vector;
 
@@ -83,8 +84,10 @@ int main(){
 	printf("\nBnB finished. time = %f \n", ((double) (finTime-startTime))/CLOCKS_PER_SEC);
 	std::cout<<"Banyaknya simpul: " << numSimp <<std::endl;
 
-
-
+	std::list<int> li = Solusi.getPath();
+	std::vector<int> vi;        
+	copy(li.begin(),li.end(),back_inserter(vi));
+	displayGraph(Sim.getR(),vi);
 	return 0;
 	
 }

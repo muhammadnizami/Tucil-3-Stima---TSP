@@ -41,6 +41,8 @@ namespace TSP_BnB{
 		vector<vector<float> > getR() const;
 		vector<vector<float> > getA() const;
 
+		const Simpul* getParent(){return Parent;}
+
 		//predikat
 		bool isRoot() const;
 		bool isSolusi() const;
@@ -55,6 +57,7 @@ namespace TSP_BnB{
 		float r;
 		int i;
 		float c;
+		bool root;
 
 		list<int> path;
 
