@@ -1,3 +1,4 @@
+//file:MainBnB.cpp
 #include "Simpul.h"
 #include <iostream>
 #include <cstdio>

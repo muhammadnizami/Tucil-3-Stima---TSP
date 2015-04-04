@@ -1,3 +1,4 @@
+//file:Simpul.cpp
 #include "Simpul.h"
 #include <cmath>
 #include <limits>
